@@ -1,0 +1,76 @@
+2025-08-02 22:33:51,989 - Pipeline Logger - INFO - Initializing analysis pipeline
+2025-08-02 22:33:51,989 - Pipeline Logger - INFO - Fetching PR metadata
+2025-08-02 22:33:53,109 - Pipeline Logger - INFO - Latest SHA: a6306fd6b4f3612c59f4f936eedf6daed1008f60
+2025-08-02 22:33:53,521 - Pipeline Logger - INFO - Analyzing PR with AI Crew
+2025-08-02 22:33:53,521 - Pipeline Logger - INFO - Starting AI analysis with CrewAI...
+2025-08-02 22:34:21,657 - Pipeline Logger - INFO - AI crew analysis completed successfully.Results:
+{
+  "files": [
+    {
+      "name": "app/modules/auth/auth_service.py",
+      "issues": [
+        {
+          "type": "Potential Bug",
+          "line": 26,
+          "description": "The 'expiresIn' parameter may not be a valid request field for this authentication API. For instance, the standard Firebase Authentication `signInWithPassword` REST API does not accept this parameter in the request body; it's a field returned in the response. This may result in the parameter being ignored or causing an API error.",
+          "suggestion": "Verify the official documentation for the authentication endpoint being used. Confirm that 'expiresIn' is a supported request parameter. If the goal is to manage session length, investigate the correct mechanism, such as using session cookies if the API provides them."
+        },
+        {
+          "type": "Best Practice",
+          "line": 26,
+          "description": "The token expiration time ('1200s') is hardcoded directly in the service method. This makes the application difficult to configure for different environments (e.g., development, staging, production) and requires a code change to update a configuration value.",
+          "suggestion": "Externalize this configuration. Store the value in an environment variable or a dedicated configuration file and read it into the application at runtime. This improves maintainability and flexibility."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_files": 1,
+    "total_issues": 2,
+    "critical_issues": 1
+  }
+}
+2025-08-02 22:34:21,658 - Pipeline Logger - INFO - Final analysis result:
+{'files': [{'name': 'app/modules/auth/auth_service.py', 'issues': [{'type': 'Potential Bug', 'line': 26, 'description': "The 'expiresIn' parameter may not be a valid request field for this authentication API. For instance, the standard Firebase Authentication `signInWithPassword` REST API does not accept this parameter in the request body; it's a field returned in the response. This may result in the parameter being ignored or causing an API error.", 'suggestion': "Verify the official documentation for the authentication endpoint being used. Confirm that 'expiresIn' is a supported request parameter. If the goal is to manage session length, investigate the correct mechanism, such as using session cookies if the API provides them."}, {'type': 'Best Practice', 'line': 26, 'description': "The token expiration time ('1200s') is hardcoded directly in the service method. This makes the application difficult to configure for different environments (e.g., development, staging, production) and requires a code change to update a configuration value.", 'suggestion': 'Externalize this configuration. Store the value in an environment variable or a dedicated configuration file and read it into the application at runtime. This improves maintainability and flexibility.'}]}], 'summary': {'total_files': 1, 'total_issues': 2, 'critical_issues': 1}}
+2025-08-02 22:34:21,658 - Pipeline Logger - INFO - Result cached under key: analysis:https://github.com/potpie-ai/potpie:428:a6306fd6b4f3612c59f4f936eedf6daed1008f60
+2025-08-02 23:02:11,092 - Pipeline Logger - INFO - Initializing analysis pipeline
+2025-08-02 23:02:11,092 - Pipeline Logger - INFO - Fetching PR metadata
+2025-08-02 23:02:11,947 - Pipeline Logger - INFO - Latest SHA: cf97ae7b8938f159edac047cdf3e99533a48aaac
+2025-08-02 23:02:12,401 - Pipeline Logger - INFO - Analyzing PR with AI Crew
+2025-08-02 23:02:12,401 - Pipeline Logger - INFO - Starting AI analysis with CrewAI...
+2025-08-02 23:02:48,270 - Pipeline Logger - INFO - AI crew analysis completed successfully.Results:
+{
+  "files": [
+    {
+      "name": "app/alembic/versions/20250621130556_bcbe001128d1_remove_unique_text_version_user_.py",
+      "issues": [
+        {
+          "type": "Code Style",
+          "line": 1,
+          "description": "The filename '20250621130556_bcbe001128d1_remove_unique_text_version_user_.py' ends with a trailing underscore, which is unconventional for Python files.",
+          "suggestion": "Rename the file to remove the trailing underscore for better adherence to common naming conventions, for example: '..._remove_unique_text_version_user.py'."
+        },
+        {
+          "type": "Best Practice",
+          "line": 12,
+          "description": "The diff indicates that 'import sqlalchemy as sa' was added and then removed. This suggests an unused import was committed initially.",
+          "suggestion": "Ensure that code is linted and cleaned of unused imports before committing to maintain a clean and readable codebase. The removal in a subsequent commit is good practice."
+        },
+        {
+          "type": "Best Practice",
+          "line": 13,
+          "description": "The diff indicates that 'from sqlalchemy.dialects import postgresql' was added and then removed, indicating an initially unused import.",
+          "suggestion": "Avoid committing unused imports. Running a linter before committing can help automatically identify and remove them. The cleanup is appreciated."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_files": 1,
+    "total_issues": 3,
+    "critical_issues": 0
+  }
+}
+2025-08-02 23:02:48,270 - Pipeline Logger - INFO - Final analysis result:
+{'files': [{'name': 'app/alembic/versions/20250621130556_bcbe001128d1_remove_unique_text_version_user_.py', 'issues': [{'type': 'Code Style', 'line': 1, 'description': "The filename '20250621130556_bcbe001128d1_remove_unique_text_version_user_.py' ends with a trailing underscore, which is unconventional for Python files.", 'suggestion': "Rename the file to remove the trailing underscore for better adherence to common naming conventions, for example: '..._remove_unique_text_version_user.py'."}, {'type': 'Best Practice', 'line': 12, 'description': "The diff indicates that 'import sqlalchemy as sa' was added and then removed. This suggests an unused import was committed initially.", 'suggestion': 'Ensure that code is linted and cleaned of unused imports before committing to maintain a clean and readable codebase. The removal in a subsequent commit is good practice.'}, {'type': 'Best Practice', 'line': 13, 'description': "The diff indicates that 'from sqlalchemy.dialects import postgresql' was added and then removed, indicating an initially unused import.", 'suggestion': 'Avoid committing unused imports. Running a linter before committing can help automatically identify and remove them. The cleanup is appreciated.'}]}], 'summary': {'total_files': 1, 'total_issues': 3, 'critical_issues': 0}}
+2025-08-02 23:02:48,271 - Pipeline Logger - INFO - Result cached under key: analysis:https://github.com/potpie-ai/potpie:418:cf97ae7b8938f159edac047cdf3e99533a48aaac

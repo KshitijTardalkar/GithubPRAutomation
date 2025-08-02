@@ -56,26 +56,27 @@ cd GithubPRAutomation
    - Click on "Generate new token". Select the scopes you need, typically including `repo` for accessing 
 repositories.
    - Generate and copy the token.
-
+   - Pass this token in the POST request to authenticate API calls. This enables higher rate limits and access to private repositories.
 2. **Obtain Gemini API Key:**
    - Visit the Gemini platform's website or API service.
    - Follow their documentation to generate an API key.
    - Store the key securely.
 
-#### Configure Environment Variables
+#### Configure API Keys
 
-1. **Create a `.env` File:**
-   - Copy `example.env` to create a new file named `.env` in the root directory of your project.
-   ```bash
-   cp .env.example .env
-   ```
+   - Set Environment Variables:
 
-2. **Add API Keys to `.env`:**
-   - Open the `.env` file and add your API keys:
+        Export your Gemini API key directly in your terminal (no .env file is used):
+
+      ```bash
+      export GEMINI_API_KEY=<your-gemini-api-key>
      ```
-     GITHUB_API_KEY=<Your-Github-API-Key>
-     GEMINI_API_KEY=<Your-Gemini-API-Key>
-     ```
+
+   - GitHub Token Usage:
+
+   You do not need to set the GitHub token as an environment variable.
+   Instead, pass the token directly in the POST request payload when making authenticated GitHub API calls.
+   This allows access to private repositories and increases your rate limit.
 
 #### Environment Setup
 
@@ -146,3 +147,11 @@ curl http://127.0.0.1:8000/status/<task_id>
 ```bash
 curl http://127.0.0.1:8000/result/<task_id>
 ```
+
+### 🧪 API Testing using `test.http`
+
+You can also test the API using `test.http`.  
+It works with both JetBrains IDEs and VSCode (with the REST Client extension).
+
+- Fill in the required placeholders manually, or
+- Optionally create a `test.http.env.json` to manage local test values.  
