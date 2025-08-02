@@ -24,6 +24,6 @@ class TaskResultModel(BaseModel):
     results: Result
 
 class CachedResultResponse(BaseModel):
-    status: str = "RESULT_FROM_CACHE"
+    cached: bool
     message: str
     result: Result

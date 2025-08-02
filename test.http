@@ -1,0 +1,20 @@
+### Step 1: POST to analyze-pr
+POST http://127.0.0.1:8000/analyze-pr
+Content-Type: application/json
+Accept: application/json
+
+{
+  "repo_url": "https://github.com/potpie-ai/potpie",
+  "pr_number": 305
+}
+
+> {%
+client.global.set("task_id", response.body.task_id);
+%}
+
+
+### Step 2: GET status using task_id from previous response
+GET http://127.0.0.1:8000/status/{{task_id}}
+Accept: application/json
+
+
