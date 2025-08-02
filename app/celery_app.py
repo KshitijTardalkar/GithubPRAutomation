@@ -1,6 +1,6 @@
 import os
 from celery import Celery
-from analysis_pipeline import AnalysisPipeline
+from app.analysis_pipeline import AnalysisPipeline
 
 # --- Celery App Configuration ---
 # DB 0: Message Broker

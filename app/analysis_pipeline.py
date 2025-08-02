@@ -1,11 +1,11 @@
 import json
 
-from logger import AppLogger
+from services.logging_services.logger import AppLogger
 from models.output_model import Result
 from services.github_services.diff_parser import DiffParser
 from services.github_services.get_pr import GitHubService
 from services.redis_services.redis_cache import RedisCacheService
-from services.ai_services.crew.crew import crew
+from services.ai_services.crew import crew
 from typing import Dict, Any, List
 
 
@@ -44,7 +44,7 @@ class AnalysisPipeline:
         if cached_result:
             self.logger.info(f"Cache hit for {cache_key_result}. Returning cached result.")
             try:
-                return (cached_result)
+                return cached_result
             except Exception as e:
                 self.logger.warning(f"Failed to parse cached result: {str(e)}. Proceeding with fresh analysis.")
 
@@ -62,7 +62,7 @@ class AnalysisPipeline:
             self.result_cache.set(cache_key_result, final_analysis_result, 86400)
             self.logger.info(f"Result cached under key: {cache_key_result}")
 
-            return (final_analysis_result)
+            return final_analysis_result
 
         except Exception as e:
             self.logger.error(f"Analysis failed: {str(e)}")

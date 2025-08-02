@@ -1,5 +1,5 @@
 from crewai import Task
-from services.ai_services.crew.agent import code_review_agent
+from services.ai_services.agent import code_review_agent
 
 
 # Define a task to analyze submitted code

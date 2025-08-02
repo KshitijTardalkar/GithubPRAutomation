@@ -2,13 +2,12 @@ from typing import Union
 
 from fastapi import FastAPI, HTTPException, Depends
 from celery.result import AsyncResult
-from logger import AppLogger
-from models.api_models import TaskCreationResponse, CachedResultResponse, AnalyzePrRequest, \
-    TaskStatusResponse, TaskResultModel
+from services.logging_services.logger import AppLogger
+from models.api_models import TaskCreationResponse, CachedResultResponse, AnalyzePrRequest, TaskStatusResponse, TaskResultModel
 from models.output_model import Result
 from services.github_services.get_pr import GitHubService
 from services.redis_services.redis_cache import RedisCacheService
-from celery_app import analyze_pr_task
+from app.celery_app import analyze_pr_task
 
 import os
 
