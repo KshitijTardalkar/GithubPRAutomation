@@ -86,7 +86,7 @@ repositories.
      ```
 
 2. **Ensure Services are Running:**
-   - Make sure Redis and Celery services are set up and running as specified in the Usage section.
+   - Make sure Redis and Celery services are set up and running as specified in the next section.
 
 #### Security Best Practices
 
